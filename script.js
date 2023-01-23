@@ -186,3 +186,77 @@ console.log(canDrink)
 // Bonus: Modify the above function 'adults' so that the array only includes the names of the 3 people who can drink.
 // like this: ["Candice", "Tammy", "Allen"]
 // you might need to do another method we learned previously.
+
+// a veces sabemos que solo hay un elemento con esa condicion.
+// queremos el primer elemento que cumpla condicion.
+
+// .find() => similar a filter pero devuelve el primer elemento que cumpla la condicion
+
+let firstAdult = people.find( (onePerson) => {
+  return onePerson.age >= 21 // retorna el PRIMERT elemento que cumpla la condicion
+} )
+
+console.log(firstAdult)
+
+
+
+
+// .reduce()
+
+let someNums = [ 1, 2, 10, 20, 25 ];
+
+// 1. accumulator es donde se van almacenando los resultados de esa suma/multiplicacion/etc
+// array.reduce( (acumulador, elemento) => {
+
+//   return // operacio a realizar entre el acc y el elemento
+
+// }, valorInicialAcumulador )
+
+
+// quiero sumar todos los numeros del array
+let result = someNums.reduce( (acumulador, elemento) => {
+  console.log(acumulador, elemento)
+  return acumulador * elemento
+}, 1 )
+
+console.log(result)
+
+
+
+let personArr = [
+  { name: "Jorge", candy: 21 },
+  { name: "Caro", candy: 10 },
+  { name: "Adria", candy: 24 },
+  { name: "Ruth", candy: "10" }
+]
+
+
+// sumar la cantidad de caramelitos de todos los usuarios
+
+let total = personArr.reduce( (acc, onePerson) => {
+  // console.log(acc, onePerson)
+  // return acc + onePerson.candy
+  if (onePerson.candy !== undefined) {
+    return acc + Number(onePerson.candy)
+  } else {
+    return acc
+  }
+  // reduce siempre debe retornar algo, si no aplica la operacion, retornar solo el acumulador
+
+}, 0 )
+
+console.log(total)
+
+// para forzar un string a ser numero
+// parseInt
+// Number()
+// agregar + delante de un string
+
+
+// usar reduce para concatenar strings
+
+let allNames = personArr.reduce((acc, elem, index) => {
+  return acc + index + "." + elem.name + ", "
+}, "" ) // acc empieza string vacio
+
+console.log(allNames)
