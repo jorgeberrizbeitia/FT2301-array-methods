@@ -134,3 +134,55 @@ let newCars = cars.filter( ( singleCar ) => {
 } )
 
 console.log(newCars)
+
+
+
+// Exercise 2: From the given array of people, get the people who are allowed to consume alcoholic beverages (i.e age >= 21).
+const people = [
+  { name: "Candice", age: 25 },
+  { name: "Tammy", age: 30 },
+  { name: "Allen", age: 21 },
+  { name: "Nettie", age: 20 },
+  { name: "Stuart", age: 17 },
+  { name: "Bill", age: 19 }
+];
+
+// note that "adults" is still just a function (just a function of arrow type)
+const adults = (arr) => {
+
+  let only21Plus = arr.filter( (onePerson) => {
+    return onePerson.age >= 21
+  } )
+
+  let onlyNames = only21Plus.map( (onePerson) => {
+    return onePerson.name
+  } )
+
+  // return only21Plus
+  return onlyNames
+
+  // ejemplo todo en una linea encadenando metodos
+  return arr.filter( (onePerson) => {
+    return onePerson.age >= 21
+  }).map((onePerson) => {
+    return onePerson.name
+  })
+
+}
+
+let canDrink = adults(people)
+console.log(canDrink) 
+//Answer should be 
+/*
+[
+  { name: "Candice", age: 25 },
+  { name: "Tammy", age: 30 },
+  { name: "Allen", age: 21 },
+]
+*/
+
+//----------------------------------------------------------------------
+
+// Bonus: Modify the above function 'adults' so that the array only includes the names of the 3 people who can drink.
+// like this: ["Candice", "Tammy", "Allen"]
+// you might need to do another method we learned previously.
