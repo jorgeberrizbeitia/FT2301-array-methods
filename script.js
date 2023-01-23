@@ -248,7 +248,7 @@ let total = personArr.reduce( (acc, onePerson) => {
 console.log(total)
 
 // para forzar un string a ser numero
-// parseInt
+// parseInt() o parseFloat()
 // Number()
 // agregar + delante de un string
 
@@ -260,3 +260,148 @@ let allNames = personArr.reduce((acc, elem, index) => {
 }, "" ) // acc empieza string vacio
 
 console.log(allNames)
+
+
+// exercise 2: Given a menu of foods and their calories, 
+// return the AVERAGE NUMBER of calories as a NUMBER and rounded to TWO DECIMALS for the entire list from the function
+// the function must return null if the array is empty
+// Note: Some elements don't have any calories, skip them in your reduce callback
+// HINT: First calculate the total with .reduce . Then calculate the average
+const menu = [
+  { name: 'Carrots', calories: 150.45 },
+  { name: 'Steak'},
+  { name: 'Broccoli', calories: 120.2342 },
+  { name: 'Chicken', calories: 250.6523 },
+  { name: 'Pizza', calories: 520.124 }
+];
+
+// again... just an arrow function below.
+const calAvgCalories = (arr) => {
+
+  if (arr.length === 0) {
+    return 0;
+  }
+
+  let total = arr.reduce((acc, food) => {
+    if (food.calories !== undefined) {
+      return acc + food.calories
+    } else {
+      return acc
+    }
+  }, 0)
+
+  let avg = total / arr.length
+  let twoDigits = avg.toFixed(2) 
+  // toFixed convierte un numero a string con x cantidad de decimales 
+  console.log(twoDigits)
+  return Number(twoDigits)
+
+}
+
+//Invoking and running the function
+let output1 = calAvgCalories(menu)
+console.log(output1) //Answer should be 208.29 
+
+let output2 = calAvgCalories([])
+console.log(output2) //Answer should be 0
+
+//-------------------------------------------------------
+
+// BONUS: Manually modify the 'menu' array so all calory properties are strings instead of numbers...
+// ... then Refactor your above code to calculate average if the calories were in strings
+
+
+
+// .reverse()
+// 1. muta el array original
+// 2. nos da la referencia del mismo original
+
+let orderedNumbers = [1, 2, 3, 4, 5]
+
+// si no quiero afectar el array origina
+// 1. structuredClone()
+// 2. .map()
+// 3. JSON.parse() & JSON.stringify
+// 4. operador spread (...)
+
+let cloneArr = structuredClone(orderedNumbers)
+
+let inverseNumbers = cloneArr.reverse()
+console.log(inverseNumbers)
+
+console.log(orderedNumbers)
+
+
+// ejemplo invertir string
+let str = "hola";
+
+// cambiar el string a array de caracteres
+// ["h", "o", "l", "a"]
+let strArr = str.split("")
+console.log(strArr)
+
+// aplicar .reverse()
+strArr.reverse()
+console.log(strArr)
+
+// cambiar array de caracteres a string
+let reversedStr = strArr.join("")
+console.log(reversedStr)
+
+
+// .sort()
+
+let characterArr = ["a", "e", "c", "b", "d"]
+
+let cloneArrSort = structuredClone(characterArr)
+
+cloneArrSort.sort()
+
+console.log(cloneArrSort)
+
+
+let someNumbers = [1, 40, 6, 3, 80, 100]
+
+let cloneArrNumSort = structuredClone(someNumbers)
+
+// cloneArrNumSort.sort()
+// console.log(cloneArrNumSort)
+
+cloneArrNumSort.sort( (elem2, elem1) => {
+  console.log(elem2, elem1)
+  // ordenamos ascendente o descendente
+  // acepta 3 valores posibles.
+  // 1. num neg => ordenalo detras
+  // 2. num pos => ordenalo delante
+  // 3. 0 => no los cambies de posicion
+  if (elem2 > elem1) {
+    return -1
+  } else if (elem2 < elem1) {
+    return 1
+  } else {
+    return 0
+  }
+} )
+
+console.log(cloneArrNumSort)
+
+
+
+let personArr2 = [
+  { name: "Jorge", candy: 21 },
+  { name: "Caro", candy: 10 },
+  { name: "Adria", candy: 24 },
+  { name: "Ruth", candy: "10" }
+]
+
+personArr2.sort( (elem2, elem1) => {
+  if (elem2.name > elem1.name) {
+    return 1
+  } else if (elem2.name < elem1.name) {
+    return -1
+  } else {
+    return 0
+  }
+} )
+
+console.log(personArr2)
