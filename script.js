@@ -63,3 +63,74 @@ function numbersAsString(arrNum) {
 
 console.log( numbersAsString(randomNumbers) )
 console.log( numbersAsString([1, 2, 3]) )
+
+
+//  actividad 3
+
+// Lets try and use functions now
+
+// exercise  3: Return only the names of the restaurants 
+// Note: Be careful here. 'info' is an object with a key called 'list' which is the array
+ 
+const info = {
+  list: [
+    {name: 'Mirazur', owner : 'Gustavo'},
+    {name: 'Noma', owner : 'Taka'},
+    {name: 'Gaggan', owner : 'Alvaro'},
+    {name: 'Geranium', owner : 'Gustavo'},
+    {name: 'Arpège', owner : 'Luis'},    
+ ]  
+}
+
+
+function onlyNames(arr) {
+
+  console.log(arr)
+  let newArr = arr.map( (restaurant) => {
+    return restaurant.name
+  } )
+
+  return newArr
+
+}
+
+// const onlyNames = arr => arr.map( restaurant => restaurant.name )
+// ejemplo super mega reducido en sintaxis
+
+// test
+const restaurants = onlyNames( info.list )
+console.log(restaurants)
+// Answer should be [ 'Mirazur', 'Noma', 'Gaggan', 'Geranium', 'Arpège']
+
+// .filter()
+
+const cars = [
+  { brand: "Mercedes-Benz", year: 2012, weight: 0.8 },
+  { brand: "Porsche", year: 2020, weight: 1.3 },
+  { brand: "Bugatti", year: 2003, weight: 0.5 },
+  { brand: "Volvo", year: 2010, weight: 1.9 },
+  { brand: "Smart", year: 2010, weight: 0.1 },
+];
+
+// usar el filter para crear un nuevo arr 2010 en adelante
+
+let newCars = cars.filter( ( singleCar ) => {
+
+  // al igual que map, filter necesita un return para crear el array
+  // a diferencia de map. Filter no debe retornar un valor.
+  // FILTER SIEMPRE ESPERA QUE SE RETORNE UN BOOLEANO
+  // si retornamos true. Incluye el elemento.
+  // si retornamos false. No Incluye el elemento.
+
+  // if (singleCar.year >= 2010) {
+  //   return true // incluye el coche
+  // } else {
+  //   return false // no incluyas el coche
+  // }
+
+  // importante. Filter no modifica los elementos retornados.
+  return singleCar.year >= 2010
+
+} )
+
+console.log(newCars)
